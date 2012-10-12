@@ -1,0 +1,49 @@
+#Macro define
+CC = gcc
+CFLAGS = -fno-builtin -c
+COBJ = -o
+LD = ld
+LDLIB = -lX11 -lXi -lXpm -lm
+
+
+TARGET = b
+
+MAINOBJ = mcsl/mcsl.o mcsl/mcsltool.o mcsl/mcsldevice.o mcsl/mcslobj.o mcsl/mcsltopwin.o mcsl/mcslbutton.o \
+					mcsl/mcslbox.o mcsl/mcslinput.o mcsl/mcsllabel.o mcsl/mcslcanvas.o
+
+
+#process
+
+build:$(TARGET)
+
+$(TARGET):test.o $(MAINOBJ)
+	$(CC) $(LDLIB) $(MAINOBJ) test.o $(COBJ) $(TARGET)
+	
+test.o:test.c
+	$(CC) $(CFLAGS) $<
+
+mcsl/mcsl.o:mcsl/mcsl.c
+	$(CC) $(CFLAGS) $< $(COBJ) $@
+mcsl/mcsltool.o:mcsl/mcsltool.c
+	$(CC) $(CFLAGS) $< $(COBJ) $@
+mcsl/mcsldevice.o:mcsl/mcsldevice.c
+	$(CC) $(CFLAGS) $< $(COBJ) $@
+mcsl/mcslobj.o:mcsl/mcslobj.c
+	$(CC) $(CFLAGS) $< $(COBJ) $@
+mcsl/mcslbox.o:mcsl/mcslbox.c
+	$(CC) $(CFLAGS) $< $(COBJ) $@	
+mcsl/mcsltopwin.o:mcsl/mcsltopwin.c
+	$(CC) $(CFLAGS) $< $(COBJ) $@				
+mcsl/mcslbutton.o:mcsl/mcslbutton.c
+	$(CC) $(CFLAGS) $< $(COBJ) $@
+mcsl/mcslinput.o:mcsl/mcslinput.c
+	$(CC) $(CFLAGS) $< $(COBJ) $@ 
+mcsl/mcsllabel.o:mcsl/mcsllabel.c
+	$(CC) $(CFLAGS) $< $(COBJ) $@
+mcsl/mcslcanvas.o:mcsl/mcslcanvas.c
+	$(CC) $(CFLAGS) $< $(COBJ) $@		
+	
+clean:
+	rm $(MAINOBJ)
+	rm test.o
+	rm $(TARGET)

@@ -1,0 +1,4 @@
+#!/bin/bash
+
+sudo cp libmcsl.so /usr/local/lib
+sudo cp *.h /usr/local/include/mcsl
